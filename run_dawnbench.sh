@@ -7,8 +7,9 @@
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=4              # must be >= DAWN_WORKERS below
 #SBATCH --mem=16G
-#SBATCH --partition=vgpu               # CHECK THIS: run `sinfo` to see real partition names
-#SBATCH --gres=gpu:1                   # CHECK THIS: some clusters use --gpus=1 instead
+#SBATCH --partition=comp3710
+#SBATCH --account=comp3710
+#SBATCH --gres=gpu:1                  # CHECK THIS: some clusters use --gpus=1 instead
 
 # ---------------------------------------------------------------------------
 # COMP3710 Part 3.2 - DAWNBench ResNet-18 on CIFAR-10
@@ -26,11 +27,9 @@ echo "started : $(date)"
 nvidia-smi || echo "WARNING: nvidia-smi failed - no GPU visible?"
 
 # --- environment -----------------------------------------------------------
-# Adjust to however your Python environment is set up on Rangpur.
-# module load cuda/12.1
-# module load anaconda3
-# source activate comp3710
-source "$HOME/venvs/comp3710/bin/activate"
+cd "$SLURM_SUBMIT_DIR"
+source ~/miniconda3/etc/profile.d/conda.sh
+conda activate ./pytorch-env
 
 # --- configuration ---------------------------------------------------------
 # CIFAR-10 must already be downloaded (see PRE-DOWNLOAD below) because compute
@@ -45,8 +44,6 @@ export DAWN_WORKERS=4                  # keep <= --cpus-per-task
 
 export DAWN_STAGE3=1                   # full FP32 run
 export DAWN_STAGE4=1                   # full mixed-precision run
-
-cd "$SLURM_SUBMIT_DIR"
 
 # --- run -------------------------------------------------------------------
 # --inplace writes outputs back into the notebook so the plots and printed
