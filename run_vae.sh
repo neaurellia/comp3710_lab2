@@ -6,7 +6,6 @@
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=4              # must be >= VAE_WORKERS below
-#SBATCH --mem=16G
 #SBATCH --partition=comp3710
 #SBATCH --account=comp3710             # mandatory: without it the job hangs in PartitionConfig
 #SBATCH --gres=gpu:1
