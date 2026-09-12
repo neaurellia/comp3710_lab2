@@ -6,7 +6,6 @@
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=4              # must be >= DAWN_WORKERS below
-#SBATCH --mem=16G
 #SBATCH --partition=comp3710
 #SBATCH --account=comp3710
 #SBATCH --gres=gpu:1                  # CHECK THIS: some clusters use --gpus=1 instead
