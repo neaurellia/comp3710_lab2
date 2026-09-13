@@ -15,3 +15,11 @@ Thumbs.db
 # Editor
 .vscode/
 .idea/
+
+*.zip
+keras_png_slices_data/
+data/
+pytorch-env/
+*.pt
+__pycache__/
+.ipynb_checkpoints/

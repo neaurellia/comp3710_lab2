@@ -1,0 +1,24 @@
+[
+  {
+    "tag": "fp32",
+    "use_amp": false,
+    "epochs": 30,
+    "batch_size": 128,
+    "max_lr": 0.1,
+    "final_test_acc": 0.9357,
+    "best_test_acc": 0.936,
+    "total_seconds": 211.7809590259567,
+    "mean_epoch_seconds": 7.058451557562997
+  },
+  {
+    "tag": "amp",
+    "use_amp": true,
+    "epochs": 30,
+    "batch_size": 128,
+    "max_lr": 0.1,
+    "final_test_acc": 0.9339,
+    "best_test_acc": 0.9339,
+    "total_seconds": 187.07687835302204,
+    "mean_epoch_seconds": 6.2353576866754645
+  }
+]
