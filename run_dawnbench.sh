@@ -36,12 +36,12 @@ conda activate ./pytorch-env
 export DAWN_DATA="$HOME/data"
 export DAWN_DOWNLOAD=0
 
-export DAWN_EPOCHS=30
+export DAWN_EPOCHS=50
 export DAWN_BATCH=128
 export DAWN_MAX_LR=0.1
 export DAWN_WORKERS=4                  # keep <= --cpus-per-task
 
-export DAWN_STAGE3=1                   # full FP32 run
+export DAWN_STAGE3=0                   # full FP32 run
 export DAWN_STAGE4=1                   # full mixed-precision run
 
 # --- run -------------------------------------------------------------------
