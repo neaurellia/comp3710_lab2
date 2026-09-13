@@ -31,26 +31,26 @@ source ~/miniconda3/etc/profile.d/conda.sh
 conda activate ./pytorch-env
 
 # --- configuration ---------------------------------------------------------
-# Read-only group directory. Nothing is copied out of it and nothing is written to it.
-export VAE_DATA="/home/groups/comp3710/OASIS"
+# ${VAR:-default} means "use VAR if already set, else use default", so
+# sbatch --export=ALL,VAE_LATENT=2 now actually overrides these.
+export VAE_DATA="${VAE_DATA:-/home/groups/comp3710/OASIS}"
 
-export VAE_IMG=64                      # 256 -> 64; must be divisible by 16. Set 128 for sharper
-export VAE_LATENT=16                   # set 2 for the classic direct-sweep manifold grid
-export VAE_BATCH=128
-export VAE_EPOCHS=30
-export VAE_LR=1e-3
-export VAE_BETA=1.0                    # 1.0 is the true ELBO; >1 is a beta-VAE
-export VAE_KL_WARMUP=10                # linear beta ramp, guards against posterior collapse
-export VAE_WORKERS=4                   # keep <= --cpus-per-task
+export VAE_IMG="${VAE_IMG:-64}"
+export VAE_LATENT="${VAE_LATENT:-16}"
+export VAE_BATCH="${VAE_BATCH:-128}"
+export VAE_EPOCHS="${VAE_EPOCHS:-30}"
+export VAE_LR="${VAE_LR:-1e-3}"
+export VAE_BETA="${VAE_BETA:-1.0}"
+export VAE_KL_WARMUP="${VAE_KL_WARMUP:-10}"
+export VAE_WORKERS="${VAE_WORKERS:-4}"
+export VAE_DOWNLOAD="${VAE_DOWNLOAD:-0}"
 
-export VAE_STAGE2=1                    # smoke test
-export VAE_STAGE3=1                    # full training
-export VAE_STAGE4=1                    # manifold visualisation  <- the marked deliverable
-export VAE_STAGE5=1                    # save PNG artifacts
+export VAE_STAGE2="${VAE_STAGE2:-1}"
+export VAE_STAGE3="${VAE_STAGE3:-1}"
+export VAE_STAGE4="${VAE_STAGE4:-1}"
+export VAE_STAGE5="${VAE_STAGE5:-1}"
 
-# Outputs land here: loss curves, manifold grid, latent scatter, reconstructions,
-# samples, interpolation, plus one ~15 MB checkpoint. Well inside the 16GB home quota.
-export VAE_OUT="./vae_outputs"
+export VAE_OUT="${VAE_OUT:-./vae_outputs}"
 
 # --- run -------------------------------------------------------------------
 # --inplace writes outputs back into the notebook so plots and printed results

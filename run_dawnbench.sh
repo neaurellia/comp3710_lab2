@@ -31,18 +31,16 @@ source ~/miniconda3/etc/profile.d/conda.sh
 conda activate ./pytorch-env
 
 # --- configuration ---------------------------------------------------------
-# CIFAR-10 must already be downloaded (see PRE-DOWNLOAD below) because compute
-# nodes typically have no outbound internet access.
-export DAWN_DATA="$HOME/data"
-export DAWN_DOWNLOAD=0
+export DAWN_DATA="${DAWN_DATA:-$HOME/data}"
+export DAWN_DOWNLOAD="${DAWN_DOWNLOAD:-0}"
 
-export DAWN_EPOCHS=50
-export DAWN_BATCH=128
-export DAWN_MAX_LR=0.1
-export DAWN_WORKERS=4                  # keep <= --cpus-per-task
+export DAWN_EPOCHS="${DAWN_EPOCHS:-50}"
+export DAWN_BATCH="${DAWN_BATCH:-128}"
+export DAWN_MAX_LR="${DAWN_MAX_LR:-0.1}"
+export DAWN_WORKERS="${DAWN_WORKERS:-4}"
 
-export DAWN_STAGE3=0                   # full FP32 run
-export DAWN_STAGE4=1                   # full mixed-precision run
+export DAWN_STAGE3="${DAWN_STAGE3:-0}"
+export DAWN_STAGE4="${DAWN_STAGE4:-1}"                   # full mixed-precision run
 
 # --- run -------------------------------------------------------------------
 # --inplace writes outputs back into the notebook so the plots and printed
