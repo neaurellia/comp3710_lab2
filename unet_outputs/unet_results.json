@@ -1,0 +1,27 @@
+{
+  "img_size": 128,
+  "base_ch": 32,
+  "num_classes": 4,
+  "epochs": 25,
+  "batch_size": 16,
+  "ce_weight": 0.5,
+  "dice_weight": 0.5,
+  "class_names": [
+    "0 background",
+    "1 CSF",
+    "2 grey matter",
+    "3 white matter"
+  ],
+  "test_dsc_per_class": {
+    "0 background": 0.9995194461362592,
+    "1 CSF": 0.952144375814762,
+    "2 grey matter": 0.9517320696469673,
+    "3 white matter": 0.9726423849599709
+  },
+  "test_dsc_mean": 0.9690095691394899,
+  "test_dsc_min": 0.9517320696469673,
+  "dsc_target": 0.9,
+  "all_labels_pass": true,
+  "train_seconds": 377.1623673485592,
+  "mean_epoch_seconds": 15.086494693942369
+}
