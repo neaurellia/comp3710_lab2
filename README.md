@@ -136,5 +136,36 @@ each script for the matching smoke-test and live-demo command lines.
 
 ## AI usage
 
-Developed with Claude (Anthropic) per the lab sheet's permitted-AI-use terms — architecture,
-training code, and SLURM scripts were AI-assisted; all results were run and verified on Rangpur.
+The lab sheet's "Use of Artificial Intelligence" section explicitly permits AI assistance for this
+lab. In line with that, this is a full disclosure rather than a token line.
+
+**Tool:** Claude (Anthropic — Claude Code / Claude Sonnet & Opus), used throughout Parts 1–4.
+
+**What it was used for:**
+- Generating the PyTorch implementations across every notebook — the square-wave/DFT port in
+  `part1.ipynb`; the CNN in `part3.ipynb`; ResNet-18 from scratch and the DAWNBench training loop
+  in `part3_dawnbench.ipynb`; the VAE, UNet, and WGAN-GP models, loss functions, and staged
+  test/train/evaluate structure in the three `part4_*.ipynb` notebooks
+- Writing the four `run_*.sh` SLURM scripts, including working out the correct
+  `--partition/--account/--gres` flags and the `${VAR:-default}` override pattern for this cluster
+- Drafting code comments and this README
+- Explaining the underlying theory (Fourier analysis, PCA, CNN/ResNet architecture, VAEs, UNet
+  skip connections, WGAN-GP) so it could be understood and reproduced from first principles, not
+  just copied
+
+**What was not just accepted as-is:**
+- Every notebook was actually executed — locally where possible (Part 1's CPU-only PyTorch code,
+  and syntax/shape verification of the deep-learning notebooks against synthetic data before ever
+  touching Rangpur) and for real on Rangpur's A100 GPUs for every result quoted in this README
+- Real bugs were found this way and fixed before submission — e.g. a stage-1 sanity check in the
+  VAE notebook used `torch.randn` where the BCE loss required `[0,1]`-ranged input, which only
+  surfaced by actually running it
+- Every architectural and hyperparameter choice documented above (the CIFAR stem instead of the
+  ImageNet stem, Dice+CE instead of CE alone, WGAN-GP instead of a vanilla GAN loss, `beta1=0.0`
+  for the GAN's Adam optimiser, the KL warm-up schedule) was explained and cross-examined against
+  the actual code and actual training results, not asserted
+- The markdown explanation cells inside each notebook were rewritten in first-person understanding
+  after that process, not left as AI-authored prose
+
+Per the lab sheet, results and code were verified on Rangpur and the author can explain and justify
+every design decision and result above to a demonstrator on request.
